@@ -1,0 +1,23 @@
+services:
+  afuraffair:
+    build: .
+    container_name: afuraffair
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    networks:
+      - traefik_web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.afuraffair.rule=Host(`afuraffair.briancauley.com`)"
+      - "traefik.http.routers.afuraffair.entrypoints=websecure"
+      - "traefik.http.routers.afuraffair.tls.certresolver=letsencrypt-http"
+      - "traefik.http.services.afuraffair.loadbalancer.server.port=8080"
+
+networks:
+  traefik_web:
+    external: true
