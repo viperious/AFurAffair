@@ -1,0 +1,54 @@
+@inject ISalonInfoService Salon
+
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="eyebrow">About Us</div>
+                <h2 class="display">Treating every pup like <em>family</em>.</h2>
+                <p>A Fur Affair has been Kearns' favorite grooming spot for over a decade. Lead groomer Cesar and the team specialize in gentle, patient care — especially for anxious dogs, seniors, and first-timers.</p>
+                <p>We get to know every pup who walks through the door. No assembly-line grooming, no rushing, no surprises. Just clean, happy dogs and owners who keep coming back.</p>
+                <div class="about-features">
+                    <div class="feat">
+                        <div class="feat-check">✓</div>
+                        <div>
+                            <strong>Patient with anxious pups</strong>
+                            <span>We work at your dog's pace</span>
+                        </div>
+                    </div>
+                    <div class="feat">
+                        <div class="feat-check">✓</div>
+                        <div>
+                            <strong>All breeds welcome</strong>
+                            <span>Small, large, and everything between</span>
+                        </div>
+                    </div>
+                    <div class="feat">
+                        <div class="feat-check">✓</div>
+                        <div>
+                            <strong>Transparent pricing</strong>
+                            <span>No surprise add-ons at pickup</span>
+                        </div>
+                    </div>
+                    <div class="feat">
+                        <div class="feat-check">✓</div>
+                        <div>
+                            <strong>Local &amp; independent</strong>
+                            <span>Family-run, not a chain</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials">
+                @foreach (var t in Salon.Testimonials)
+                {
+                    <div class="testimonial">
+                        <div class="stars">@(new string('★', t.Stars))</div>
+                        <p>@t.Quote</p>
+                        <div class="author">— @t.Author</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

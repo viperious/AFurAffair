@@ -1,0 +1,36 @@
+@inject ISalonInfoService Salon
+
+<footer id="contact" class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <div class="footer-mark">AFA</div>
+            <h3>A Fur Affair <span>Pet Salon</span></h3>
+            <p>The finest pet grooming in Kearns since day one. Cesar and the team treat every pup like family.</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Visit Us</h4>
+            <p>@Salon.AddressShort</p>
+            <a href="https://maps.google.com/?q=@(Uri.EscapeDataString(Salon.AddressShort))" target="_blank" rel="noopener">Get directions →</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Get In Touch</h4>
+            <p><a href="tel:@Salon.PhoneTel">@Salon.Phone</a></p>
+            <p><a href="mailto:@Salon.Email">@Salon.Email</a></p>
+            <p><a href="@Salon.FacebookUrl" target="_blank" rel="noopener">Facebook</a></p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Hours</h4>
+            @foreach (var h in Salon.HoursOfOperation)
+            {
+                <p><span>@h.Days</span> · @h.Hours</p>
+            }
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>© @DateTime.Now.Year A Fur Affair Pet Salon</span>
+        <span>Built with 🐾 in Utah</span>
+    </div>
+</footer>

@@ -1,0 +1,41 @@
+@inject ISalonInfoService Salon
+@rendermode InteractiveAuto
+
+<nav class="topnav @(_scrolled ? "topnav-scrolled" : "")">
+    <div class="topnav-inner">
+        <a href="/" class="brand">
+            <span class="brand-mark">AFA</span>
+            <span class="brand-text">A Fur Affair<span class="brand-sub">PET SALON</span></span>
+        </a>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#daycare">Daycare</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#visit">Visit</a>
+            <a href="@Salon.MoeGoBookingUrl" target="_blank" rel="noopener" class="nav-cta">Book Now</a>
+        </div>
+        <button class="nav-toggle" @onclick="ToggleMenu" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    @if (_menuOpen)
+    {
+        <div class="nav-mobile">
+            <a href="#services" @onclick="CloseMenu">Services</a>
+            <a href="#daycare" @onclick="CloseMenu">Daycare</a>
+            <a href="#gallery" @onclick="CloseMenu">Gallery</a>
+            <a href="#about" @onclick="CloseMenu">About</a>
+            <a href="#visit" @onclick="CloseMenu">Visit</a>
+            <a href="@Salon.MoeGoBookingUrl" target="_blank" rel="noopener" class="nav-cta-mobile" @onclick="CloseMenu">Book Now</a>
+        </div>
+    }
+</nav>
+
+@code {
+    private bool _menuOpen;
+    private bool _scrolled;
+
+    private void ToggleMenu() => _menuOpen = !_menuOpen;
+    private void CloseMenu() => _menuOpen = false;
+}

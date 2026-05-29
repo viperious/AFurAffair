@@ -1,0 +1,40 @@
+@inject ISalonInfoService Salon
+
+<section id="services" class="services">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Our Services</div>
+            <h2 class="display">Everything your pup needs to <em>shine</em>.</h2>
+            <p>From a quick pawdicure to the full spa treatment — every visit is tailored to your dog's coat, temperament, and breed.</p>
+        </div>
+        <div class="services-grid">
+            @foreach (var s in Salon.Services)
+            {
+                <div class="service-card @(s.IsFeatured ? "service-card-featured" : "")">
+                    @if (s.IsFeatured)
+                    {
+                        <div class="featured-flag">Most loved</div>
+                    }
+                    <div class="service-icon"><ServiceIcon Name="@s.Icon" /></div>
+                    <h3>@s.Name</h3>
+                    <p>@s.Description</p>
+                    <div class="service-price">
+                        @if (s.StartingPrice.HasValue)
+                        {
+                            <span class="price-amount">$@s.StartingPrice.Value.ToString("0")</span>
+                        }
+                        @if (!string.IsNullOrEmpty(s.PriceNote))
+                        {
+                            <span class="price-note">@s.PriceNote</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="services-cta">
+            <a href="@Salon.MoeGoBookingUrl" target="_blank" rel="noopener" class="btn btn-primary">
+                Book your pup's spot <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,48 @@
+@inject ISalonInfoService Salon
+
+<section id="visit" class="visit">
+    <div class="container">
+        <div class="visit-grid">
+            <div class="visit-info">
+                <div class="eyebrow">Visit Us</div>
+                <h2 class="display">Come say <em>hi</em>.</h2>
+                <p class="visit-lead">We're right next to Subway on 6200 South. Easy parking out front, and walk-ins welcome for nail trims and quick services.</p>
+
+                <div class="visit-block">
+                    <h4>Address</h4>
+                    <p>@Salon.Address</p>
+                    <a href="https://maps.google.com/?q=@(Uri.EscapeDataString(Salon.AddressShort))" target="_blank" rel="noopener" class="visit-link">Open in Maps →</a>
+                </div>
+
+                <div class="visit-block">
+                    <h4>Phone</h4>
+                    <p><a href="tel:@Salon.PhoneTel">@Salon.Phone</a></p>
+                </div>
+
+                <div class="visit-block">
+                    <h4>Hours</h4>
+                    <ul class="hours-list">
+                        @foreach (var h in Salon.HoursOfOperation)
+                        {
+                            <li><span class="day">@h.Days</span><span class="time">@h.Hours</span></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="visit-cta-card">
+                <h3 class="display">Ready to book?</h3>
+                <p>Pick a date and service online — or give us a call and we'll get your pup on the schedule.</p>
+                <a href="@Salon.MoeGoBookingUrl" target="_blank" rel="noopener" class="btn btn-primary btn-block">
+                    Book online <span class="arrow">→</span>
+                </a>
+                <a href="tel:@Salon.PhoneTel" class="btn btn-ghost btn-block">
+                    📞 @Salon.Phone
+                </a>
+                <div class="cta-card-note">
+                    Online booking handled by MoeGo. You'll be redirected to their secure scheduling page.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

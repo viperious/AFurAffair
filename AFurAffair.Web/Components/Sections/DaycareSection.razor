@@ -1,0 +1,47 @@
+@inject ISalonInfoService Salon
+
+<section id="daycare" class="daycare">
+    <div class="container">
+        <div class="section-head">
+            <div class="eyebrow">Doggy Daycare</div>
+            <h2 class="display">A fun, safe place to <em>spend the day</em>.</h2>
+            <p>Drop your pup off for the day or save with a multi-day package. Recurring monthly plans even include two free baths a year.</p>
+        </div>
+
+        <div class="daycare-grid">
+            @foreach (var p in Salon.DaycarePackages)
+            {
+                <div class="daycare-card @(p.Name == "Monthly Unlimited" ? "daycare-featured" : "")">
+                    @if (p.Name == "Monthly Unlimited")
+                    {
+                        <div class="featured-flag">Best value</div>
+                    }
+                    <h3>@p.Name</h3>
+                    <div class="daycare-price">
+                        <span class="amount">$@p.Price.ToString("0")</span>
+                        <span class="unit">@p.PriceUnit</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="daycare-notes">
+            <div class="note">
+                <strong>Recurring monthly</strong> includes 2 free baths at the date of your choosing.
+            </div>
+            <div class="note">
+                <strong>All pets</strong> need to be up-to-date on all vaccinations.
+            </div>
+            <div class="note">
+                <strong>Unused daycare days</strong> expire at the end of the year.
+            </div>
+        </div>
+
+        <div class="daycare-cta">
+            <a href="tel:@Salon.PhoneTel" class="btn btn-primary">
+                Call to enroll <span class="arrow">→</span>
+            </a>
+            <span class="cta-note">or stop by — we'd love to meet your pup</span>
+        </div>
+    </div>
+</section>
